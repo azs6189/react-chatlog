@@ -5,7 +5,7 @@ import chatMessages from '../data/messages.json';
 const ChatLog = (props) => {
 	const entries = props.entries;
 
-	const chatComponents = chatMessages.map((message, index) => {
+	const chatComponents = entries.map((message, index) => {
 		return (
 			<div className="chat-log" key={index}>
 				<ChatEntry
