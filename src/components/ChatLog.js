@@ -1,6 +1,5 @@
 import React from 'react';
 import ChatEntry from './ChatEntry';
-import chatMessages from '../data/messages.json';
 
 const ChatLog = (props) => {
 	const entries = props.entries;
