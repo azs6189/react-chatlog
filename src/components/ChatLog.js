@@ -1,5 +1,6 @@
 import React from 'react';
 import ChatEntry from './ChatEntry';
+import PropTypes from 'prop-types';
 
 const ChatLog = (props) => {
 	const entries = props.entries;
@@ -18,6 +19,18 @@ const ChatLog = (props) => {
 		);
 	});
 	return chatComponents;
+};
+
+ChatLog.propTypes = {
+	entries: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.number,
+			sender: PropTypes.string,
+			body: PropTypes.string,
+			timeStamp: PropTypes.string,
+			liked: PropTypes.bool,
+		})
+	),
 };
 
 export default ChatLog;
