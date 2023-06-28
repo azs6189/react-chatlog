@@ -5,13 +5,21 @@ import TimeStamp from './TimeStamp';
 import { useState } from 'react';
 
 const ChatEntry = (props) => {
-	const [like, setLike] = useState(false);
+	const [likePost, setLikePost] = useState(props.liked);
 
-	const toggleLiked = () => {
-		setLike(!like);
+	const toggleLike = () => {
+		const updatedEntry = {
+			id: props.id,
+			sender: props.sender,
+			body: props.body,
+			timeStamp: props.timeStamp,
+			liked: !props.liked,
+		};
+		setLikePost(!likePost);
+		props.onUpdate(updatedEntry);
 	};
 
-	const heartFill = like ? '❤️' : '🤍';
+	const heartState = props.liked ? '❤️' : '🤍';
 
 	return (
 		<div className="chat-entry local">
@@ -24,7 +32,9 @@ const ChatEntry = (props) => {
 				<p className="entry-time">
 					<TimeStamp time={props.timeStamp}></TimeStamp>
 				</p>
-				<button onClick={toggleLiked}>{heartFill}</button>
+				<button onClick={toggleLike} className="like">
+					{heartState}
+				</button>
 			</section>
 		</div>
 	);
@@ -32,9 +42,11 @@ const ChatEntry = (props) => {
 
 ChatEntry.propTypes = {
 	//Fill with correct proptypes
+	id: PropTypes.number,
 	sender: PropTypes.string,
 	body: PropTypes.string,
 	timeStamp: PropTypes.string,
+	liked: PropTypes.bool,
 };
 
 export default ChatEntry;
