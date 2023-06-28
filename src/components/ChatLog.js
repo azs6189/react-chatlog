@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const ChatLog = (props) => {
 	const entries = props.entries;
 
-	const chatComponents = entries.map((message) => {
+	const chatComponents = entries.map((message, index) => {
 		return (
 			<div className="chat-log" key={message.id}>
 				<ChatEntry
@@ -14,6 +14,7 @@ const ChatLog = (props) => {
 					body={message.body}
 					timeStamp={message.timeStamp}
 					liked={message.liked}
+					onUpdate={props.onUpdateHeart}
 				></ChatEntry>
 			</div>
 		);
@@ -31,6 +32,7 @@ ChatLog.propTypes = {
 			liked: PropTypes.bool,
 		})
 	),
+	onUpdateHeart: PropTypes.func,
 };
 
 export default ChatLog;
