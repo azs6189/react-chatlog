@@ -23,6 +23,7 @@ const App = () => {
 	const switchHeart = (updatedEntry) => {
 		const updatedEntries = entries.map((entry) => {
 			if (entry.id === updatedEntry.id) {
+				// refactored to return a copy of entry.liked
 				// entry.liked = !entry.liked;
 
 				return { ...entry, liked: !entry.liked };
